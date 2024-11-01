@@ -26,12 +26,22 @@ add_action( 'wp_enqueue_scripts', 'child_theme_configurator_css', 10 );
 // functions.php
 function vgf_post_filter_shortcode() {
     ob_start(); ?>
-    
+
+    <div class="vgf-container-title">
+        <div class="vgf-left">
+            <h2 class="vgf-filter-heading">Browse Categories</h2>
+        </div>
+        <div class="vgf-right">
+            <div class="vgf-filter-toggle">
+                <button class="vgf-filter-icon">
+                    <i class="fa fa-filter" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="vgf-container">
         <div class="vgf-sidebar">
-            <div class="vgf-filter-toggle">
-                <button class="vgf-filter-icon">Filters</button>
-            </div>
             <div class="vgf-filters">
                 <?php echo vgf_render_filters(); ?>
             </div>

@@ -13,6 +13,9 @@ body {
     gap: 20px;
     overflow: hidden;
 }
+.vgf-container-heading{
+    display: block;
+}
 
 .vgf-sidebar {
     width: 25%;
@@ -53,14 +56,13 @@ body {
 }
 
 .vgf-filter-icon {
-    background-color: #0073aa;
-    color: white;
-    border: none;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 12px;
     padding: 10px;
-    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-bottom: 15px;
+    background-color: transparent;
 }
 
 .vgf-filter-toggle{
@@ -81,15 +83,15 @@ body {
     padding: 10px;
     text-align: center;
     cursor: pointer;
-    background-color: #e0e0e0;
-    margin-right: 5px;
-    border-radius: 5px;
+    color: black;
+    border-bottom: 1px solid #c1c1c1;
     transition: background-color 0.3s;
 }
 
 .vgf-tab.active {
-    background-color: #0073aa;
-    color: white;
+    /* background-color: #e38950; */
+    color: #e38950;
+    border-bottom: 1px solid#e38950;
 }
 
 .vgf-accordion {
@@ -155,9 +157,8 @@ body {
 
 @media (max-width: 768px) {
     .vgf-sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #ddd;
+        width: 80%;
+        margin: auto;
     }
 
     .vgf-posts{
@@ -255,12 +256,6 @@ body {
         flex-direction: column; /* Stack the sidebar and post container */
     }
 
-    .vgf-sidebar {
-        width: 100%; /* Full width for sidebar */
-        border-right: none; /* Remove right border */
-        border-bottom: 1px solid #ddd; /* Keep bottom border */
-    }
-
     .vgf-post-container {
         width: 100%; /* Full width for post container */
         padding: 20px; /* Ensure padding for consistency */
@@ -314,4 +309,47 @@ body {
 
 .vgf-post-content{
     padding: 0px 10px 15px 15px ;
+}
+
+.vgf-container-title {
+    max-width: 1280px;
+    margin: 20px auto;
+    border-radius: 8px;
+    gap: 20px;
+    overflow: hidden;
+}
+
+
+.vgf-left {
+    width: 25%;
+}
+
+.vgf-right {
+    width: 75%;
+}
+
+@media (max-width: 768px) {
+
+.vgf-container-title {
+    display: flex;
+    width: 90%;
+    margin: auto;
+}
+
+.vgf-filter-heading{
+        font-family: "Figtree", Sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #682415;
+}
+
+.vgf-left {
+    width: 70%;
+}
+
+.vgf-right {
+    width: 30%;
+    place-items: flex-end;
+    place-content: center;
+}
 }
