@@ -96,7 +96,7 @@ body {
 
 .vgf-children {
     padding-left: 10px;
-    display: none; /* Hidden by default, will be toggled */
+    display: block; 
 }
 
 .vgf-accordion label {
