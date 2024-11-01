@@ -319,6 +319,14 @@ body {
     overflow: hidden;
 }
 
+.vgf-post-description{
+    border-bottom: 1px solid #F8DAD9;
+    padding-bottom: 10px;
+}
+
+.vgf-author{
+    font-weight: 600;
+}
 
 .vgf-left {
     width: 25%;
@@ -326,6 +334,11 @@ body {
 
 .vgf-right {
     width: 75%;
+}
+
+.vgf-post-meta{
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width: 768px) {

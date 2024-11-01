@@ -143,7 +143,7 @@ function vgf_get_posts($selected_categories = []) {
             $output .= '<div class="vgf-post-content">';
             $output .= '<h2 class="vgf-post-title">' . esc_html($title) . '</h2>';
             $output .= '<p class="vgf-post-description">' . esc_html($description) . '</p>';
-            $output .= '<div class="vgf-post-meta"><span>' . esc_html($author) . '</span> | <span>' . esc_html($date) . '</span></div>';
+            $output .= '<div class="vgf-post-meta"><span class="vgf-author">' . esc_html($author) . '</span> <span class="vgf-date">' . esc_html($date) . '</span></div>';
             $output .= '</div></div>'; // Close card
         }
         wp_reset_postdata();
