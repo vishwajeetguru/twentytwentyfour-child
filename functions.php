@@ -50,7 +50,7 @@ add_shortcode('vgf_post_filter', 'vgf_post_filter_shortcode');
 
 
 function vgf_render_filters() {
-    $parent_categories = get_categories(array('parent' => 0, 'exclude' => 1)); // Exclude uncategorized category
+    $parent_categories = get_categories(array('parent' => 0, 'exclude' => 1));
     $output = '<div class="vgf-filters">'; // Wrap all in a filters container
     $output .= '<div class="vgf-tabs">';
 
@@ -71,7 +71,7 @@ function vgf_render_filters() {
         foreach ($subcategories as $subcat) {
             $children = get_categories(array('parent' => $subcat->term_id, 'exclude' => 1)); // Exclude uncategorized
             $output .= '<div class="vgf-subcategory">';
-            $output .= '<h4 class="vgf-subcategory-header">' . esc_html($subcat->name) . '<span class="vgf-arrow">▼</span></h4>';
+            $output .= '<h4 class="vgf-subcategory-header">' . esc_html($subcat->name) . '<i class="fa-solid fa-chevron-down"></i></h4>';
             $output .= '<div class="vgf-children">';
 
             foreach ($children as $child) {
@@ -142,5 +142,6 @@ function vgf_enqueue_scripts() {
     wp_enqueue_script('vgf-ajax', get_stylesheet_directory_uri() . '/js/vgf-ajax.js', array('jquery'), null, true);
     wp_localize_script('vgf-ajax', 'vgf_ajax_obj', array('ajaxurl' => admin_url('admin-ajax.php')));
     wp_enqueue_style('vgf-style', get_stylesheet_directory_uri() . '/css/vgf-style.css');
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 }
 add_action('wp_enqueue_scripts', 'vgf_enqueue_scripts');

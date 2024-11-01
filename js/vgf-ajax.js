@@ -20,8 +20,12 @@ jQuery(document).ready(function($) {
     $('.vgf-subcategory-header').on('click', function() {
         var $children = $(this).next('.vgf-children');
         $children.slideToggle(200); // Set duration to 200 milliseconds
-        $(this).find('.vgf-arrow').text($children.is(':visible') ? '▲' : '▼');
+        
+        // Toggle the arrow icon
+        var $arrow = $(this).find('i'); // Assuming you're using an <i> tag for the arrow
+        $arrow.toggleClass('fa-chevron-down fa-chevron-up');
     });
+
 
     // Filter handling for desktop
     $('.vgf-filter').on('change', function() {
@@ -66,3 +70,4 @@ jQuery(document).ready(function($) {
         });
     }
 });
+
