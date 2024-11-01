@@ -39,13 +39,14 @@ function vgf_post_filter_shortcode() {
         
         <div class="vgf-post-container">
             <div class="vgf-posts" id="vgf-posts">
-                <?php echo vgf_get_posts(); ?>
+                <?php echo vgf_get_posts(); // This should display all posts by default ?>
             </div>
         </div>
     </div>
 
     <?php return ob_get_clean();
 }
+
 add_shortcode('vgf_post_filter', 'vgf_post_filter_shortcode');
 
 
@@ -110,6 +111,11 @@ function vgf_get_posts($selected_categories = []) {
         ),
     );
 
+    // If no categories are selected, don't apply the tax_query
+    if (empty($selected_categories)) {
+        unset($args['tax_query']);
+    }
+
     $query = new WP_Query($args);
     $output = '';
 
@@ -125,6 +131,7 @@ function vgf_get_posts($selected_categories = []) {
 
     return $output;
 }
+
 
 
 add_action('wp_ajax_vgf_filter_posts', 'vgf_filter_posts');
