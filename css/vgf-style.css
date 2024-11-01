@@ -38,6 +38,10 @@ body {
     margin-bottom: 15px;
 }
 
+.vgf-filter-toggle{
+ display: none;   
+}
+
 .vgf-filter-icon:hover {
     background-color: #005b8c;
 }
@@ -178,6 +182,11 @@ body {
     .vgf-filters button.cancel:hover {
         background-color: #ccc;
     }
+
+    .vgf-filter-toggle{
+        display: block;   
+       }
+
 }
 
 /* Hide mobile buttons on desktop */
