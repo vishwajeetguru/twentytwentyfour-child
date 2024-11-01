@@ -100,7 +100,7 @@ function vgf_render_filters() {
 function vgf_get_posts($selected_categories = []) {
     $args = array(
         'post_type' => 'post',
-        'posts_per_page' => -1,
+        'posts_per_page' => 8,
         'tax_query' => array(
             array(
                 'taxonomy' => 'category',
@@ -122,7 +122,19 @@ function vgf_get_posts($selected_categories = []) {
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
-            $output .= '<div class="vgf-post-card">' . get_the_title() . '</div>'; // Simple card structure
+            $thumbnail = get_the_post_thumbnail(get_the_ID(), 'full');
+            $title = get_the_title();
+            $description = wp_trim_words(get_the_excerpt(), 15, '...');
+            $author = get_the_author();
+            $date = get_the_date();
+
+            $output .= '<div class="vgf-post-card" onclick="location.href=\'' . get_permalink() . '\'">';
+            $output .= '<div class="vgf-post-image">' . $thumbnail . '</div>';
+            $output .= '<div class="vgf-post-content">';
+            $output .= '<h2 class="vgf-post-title">' . esc_html($title) . '</h2>';
+            $output .= '<p class="vgf-post-description">' . esc_html($description) . '</p>';
+            $output .= '<div class="vgf-post-meta"><span>' . esc_html($author) . '</span> | <span>' . esc_html($date) . '</span></div>';
+            $output .= '</div></div>'; // Close card
         }
         wp_reset_postdata();
     } else {
@@ -131,7 +143,6 @@ function vgf_get_posts($selected_categories = []) {
 
     return $output;
 }
-
 
 
 add_action('wp_ajax_vgf_filter_posts', 'vgf_filter_posts');
