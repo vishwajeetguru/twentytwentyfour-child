@@ -121,7 +121,6 @@ function vgf_get_posts($selected_categories = []) {
         ),
     );
 
-    // If no categories are selected, don't apply the tax_query
     if (empty($selected_categories)) {
         unset($args['tax_query']);
     }
@@ -138,12 +137,23 @@ function vgf_get_posts($selected_categories = []) {
             $author = get_the_author();
             $date = get_the_date();
 
+            // Get the categories for the current post
+            $categories = get_the_category();
+            if ($categories) {
+                $main_category = esc_html($categories[0]->name); // Get the main category
+                $additional_count = count($categories) - 1; // Count additional categories
+                $additional_text = $additional_count > 0 ? ' + ' . $additional_count . ' more' : '';
+                $category_badge = '<span class="vgf-category-badge">' . $main_category . $additional_text . '</span>';
+            } else {
+                $category_badge = '';
+            }
+
             $output .= '<div class="vgf-post-card" onclick="location.href=\'' . get_permalink() . '\'">';
-            $output .= '<div class="vgf-post-image">' . $thumbnail . '</div>';
+            $output .= '<div class="vgf-post-image">' . $thumbnail . $category_badge . '</div>';
             $output .= '<div class="vgf-post-content">';
             $output .= '<h2 class="vgf-post-title">' . esc_html($title) . '</h2>';
             $output .= '<p class="vgf-post-description">' . esc_html($description) . '</p>';
-            $output .= '<div class="vgf-post-meta"><span class="vgf-author">' . esc_html($author) . '</span> <span class="vgf-date">' . esc_html($date) . '</span></div>';
+            $output .= '<div class="vgf-post-meta"><span class="vgf-author"><i class="fa-solid fa-user"></i> ' . esc_html($author) . '</span> <span class="vgf-date">' . esc_html($date) . '</span></div>';
             $output .= '</div></div>'; // Close card
         }
         wp_reset_postdata();
@@ -153,6 +163,7 @@ function vgf_get_posts($selected_categories = []) {
 
     return $output;
 }
+
 
 
 add_action('wp_ajax_vgf_filter_posts', 'vgf_filter_posts');

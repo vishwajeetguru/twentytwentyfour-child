@@ -149,6 +149,7 @@ body {
     border-radius: 12px;
     border: 1px solid #F8DAD9;
     transition: box-shadow 0.2s ease;
+    cursor: pointer;
 }
 
 .vgf-post-card:hover {
@@ -365,4 +366,23 @@ body {
     place-items: flex-end;
     place-content: center;
 }
+}
+
+.vgf-post-image {
+    position: relative; /* Ensure relative positioning for badge */
+}
+
+.vgf-category-badge {
+    position: absolute;
+    bottom: 15px; 
+    left: 10px; 
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 30px; /* Rounded corners */
+    font-size: 12px; /* Adjust font size */
+}
+
+.vgf-author i{
+    padding-right: 7px;
 }
