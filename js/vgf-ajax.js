@@ -64,10 +64,14 @@ jQuery(document).ready(function($) {
                 action: 'vgf_filter_posts',
                 categories: selected_categories
             },
+            beforeSend: function() {
+                $('#vgf-posts').html('<p>Loading...</p>'); // Show loading message
+            },
             success: function(data) {
-                $('#vgf-posts').html(data); // Update posts section
+                $('#vgf-posts').html(data);
             }
         });
+        
     }
 });
 

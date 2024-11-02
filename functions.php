@@ -74,25 +74,31 @@ function vgf_render_filters() {
 
     // Create accordions for sub-parent categories
     foreach ($parent_categories as $index => $category) {
-        $subcategories = get_categories(array('parent' => $category->term_id, 'exclude' => 1)); // Exclude uncategorized
+        $subcategories = get_categories(array('parent' => $category->term_id, 'exclude' => 1));
         $accordion_class = ($index === 0) ? 'active' : '';
-        
+    
+        // Start the accordion
         $output .= '<div class="vgf-accordion ' . $accordion_class . '" data-category-id="' . $category->term_id . '">';
-        
+    
         foreach ($subcategories as $subcat) {
-            $children = get_categories(array('parent' => $subcat->term_id, 'exclude' => 1)); // Exclude uncategorized
-            $output .= '<div class="vgf-subcategory">';
-            $output .= '<h4 class="vgf-subcategory-header">' . esc_html($subcat->name) . '<i class="fa-solid fa-chevron-down"></i></h4>';
-            $output .= '<div class="vgf-children">';
-
-            foreach ($children as $child) {
-                $output .= '<label><input type="checkbox" class="vgf-filter" value="' . $child->term_id . '"> ' . esc_html($child->name) . '</label>';
+            $children = get_categories(array('parent' => $subcat->term_id, 'exclude' => 1));
+    
+            // Only display subcategory if it has children
+            if ($children) {
+                $output .= '<div class="vgf-subcategory">';
+                $output .= '<h4 class="vgf-subcategory-header">' . esc_html($subcat->name) . '<i class="fa-solid fa-chevron-down"></i></h4>';
+                $output .= '<div class="vgf-children">';
+    
+                foreach ($children as $child) {
+                    $output .= '<label><input type="checkbox" class="vgf-filter" value="' . $child->term_id . '"> ' . esc_html($child->name) . '</label>';
+                }
+                $output .= '</div></div>'; // Close subcategory and its children
             }
-            $output .= '</div></div>'; // Close subcategory and its children
         }
-        
+    
         $output .= '</div>'; // Close accordion
     }
+    
 
     // Add Apply and Cancel buttons for mobile only
     $output .= '<div class="vgf-filters-buttons mobile-only">'; // Class to show only on mobile
@@ -103,8 +109,6 @@ function vgf_render_filters() {
     $output .= '</div>'; // Close filters container
     return $output;
 }
-
-
 
 
 function vgf_get_posts($selected_categories = []) {
@@ -164,8 +168,6 @@ function vgf_get_posts($selected_categories = []) {
     return $output;
 }
 
-
-
 add_action('wp_ajax_vgf_filter_posts', 'vgf_filter_posts');
 add_action('wp_ajax_nopriv_vgf_filter_posts', 'vgf_filter_posts');
 
@@ -174,8 +176,6 @@ function vgf_filter_posts() {
     echo vgf_get_posts($selected_categories); // Get filtered posts
     wp_die(); // Required to terminate immediately and return a proper response
 }
-
-
 
 function vgf_enqueue_scripts() {
     wp_enqueue_script('vgf-ajax', get_stylesheet_directory_uri() . '/js/vgf-ajax.js', array('jquery'), null, true);
