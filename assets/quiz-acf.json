@@ -1,0 +1,127 @@
+[
+    {
+      "key": "group_quiz_fields",
+      "title": "Quiz Fields",
+      "fields": [
+        {
+          "key": "field_button_name",
+          "label": "Button Name",
+          "name": "button_name",
+          "type": "text",
+          "instructions": "Enter the text for the quiz button.",
+          "required": 0,
+          "default_value": "",
+          "placeholder": "Start Quiz"
+        },
+        {
+          "key": "field_questions",
+          "label": "Questions",
+          "name": "questions",
+          "type": "repeater",
+          "instructions": "Add quiz questions and answers.",
+          "min": 0,
+          "max": 0,
+          "layout": "table",
+          "button_label": "Add Question",
+          "sub_fields": [
+            {
+              "key": "field_question_text",
+              "label": "Question Text",
+              "name": "question_text",
+              "type": "text",
+              "instructions": "Enter the question text.",
+              "required": 1
+            },
+            {
+              "key": "field_answers",
+              "label": "Answers",
+              "name": "answers",
+              "type": "repeater",
+              "instructions": "Add possible answers.",
+              "min": 1,
+              "max": 0,
+              "button_label": "Add Answer",
+              "sub_fields": [
+                {
+                  "key": "field_answer_text",
+                  "label": "Answer Text",
+                  "name": "answer_text",
+                  "type": "text",
+                  "instructions": "Enter the answer text.",
+                  "required": 1
+                },
+                {
+                  "key": "field_answer_score",
+                  "label": "Answer Score",
+                  "name": "score",
+                  "type": "number",
+                  "instructions": "Enter the score for this answer.",
+                  "required": 1,
+                  "min": 0
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "location": [
+        [
+          {
+            "param": "post_type",
+            "operator": "==",
+            "value": "quiz"
+          }
+        ]
+      ]
+    },
+    {
+      "key": "group_quiz_result_fields",
+      "title": "Quiz Result Fields",
+      "fields": [
+        {
+          "key": "field_quiz_id",
+          "label": "Quiz ID",
+          "name": "quiz_id",
+          "type": "post_object",
+          "instructions": "Select the quiz related to this result.",
+          "required": 1,
+          "post_type": ["quiz"],
+          "return_format": "id"
+        },
+        {
+          "key": "field_email",
+          "label": "User Email",
+          "name": "email",
+          "type": "email",
+          "instructions": "Enter the user's email address.",
+          "required": 1
+        },
+        {
+          "key": "field_selected_answers",
+          "label": "Selected Answers",
+          "name": "selected_answers",
+          "type": "textarea",
+          "instructions": "Stores the selected answer indices for each question.",
+          "required": 1
+        },
+        {
+          "key": "field_percentage_score",
+          "label": "Percentage Score",
+          "name": "percentage_score",
+          "type": "number",
+          "instructions": "The user's score as a percentage.",
+          "required": 1
+        }
+      ],
+      "location": [
+        [
+          {
+            "param": "post_type",
+            "operator": "==",
+            "value": "quiz_result"
+          }
+        ]
+      ]
+    }
+  ]
+  
