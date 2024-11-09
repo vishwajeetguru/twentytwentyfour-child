@@ -188,7 +188,6 @@ add_action('wp_enqueue_scripts', 'vgf_enqueue_scripts');
 
 
 // Quiz Functionality
-
 // New Quize functionality
 
 // Register Quiz and Quiz Result custom post types
@@ -238,7 +237,7 @@ function dynamic_quiz_shortcode($atts) {
 
             <!-- Left Section with Image -->
             <div class="left">
-                <img src="http://157.245.104.64:2006/wp-content/uploads/2024/10/quiz.png" alt="Quiz Image">
+                <img src="" alt="Quiz Image">
             </div>
 
             <!-- Right Section with Form -->
